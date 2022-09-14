@@ -2,7 +2,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Implementación de TDAList
+ * Implementación de la interfaz TDAList
  * @author Ortega Venegas Rodrigo Aldair 318036104
  * @version 1.0 13-9-2022
  * @since Estructuras de datos 2023-1. Práctica 2.

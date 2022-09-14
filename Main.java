@@ -102,6 +102,7 @@ public class Main{
                     System.out.println(lista);
                     break;
                 case 11:
+                    inputScanner.close();
                     return;
                 default:
                     System.out.println("Numero inválido");

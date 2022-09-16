@@ -1,5 +1,11 @@
 
-
+/**
+ * Interface TDAList
+ * @author Ortega Venegas Rodrigo Aldair 318036104
+ * @author San Martin Macias Juan Daniel 318181637
+ * @version 1.0 13-9-2022
+ * @since Estructuras de datos 2023-1. Práctica 2.
+ */
 public interface TDAList<T>{
     
     /**

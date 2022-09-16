@@ -1,6 +1,13 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Clase principal de la práctica
+ * @author Ortega Venegas Rodrigo Aldair 318036104
+ * @author San Martin Macias Juan Daniel 318181637
+ * @version 1.0 13-9-2022
+ * @since Estructuras de datos 2023-1. Práctica 2.
+ */
 public class Main{
     public static void main(String[] args){
 
@@ -88,24 +95,10 @@ public class Main{
                     lista.revert();
                     System.out.println(lista);
                     break;
-                case 9:
-                    try{
-                        System.out.println("Cortar a la izquierda: false, cortar a la derecha: true");
-                        boolean side = inputScanner.nextBoolean();
-                        System.out.println(lista.cut(side));
-                    }
-                    catch (InputMismatchException error){
-                        throw new InputMismatchException("Por favor inserta un tipo de dato válido");
-                    }
-                    break;
-                case 10:
-                    System.out.println(lista);
-                    break;
-                case 11:
-                    return;
                 default:
                     System.out.println("Numero inválido");
             }
         } while(true);
     }
 }
+

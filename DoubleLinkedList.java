@@ -4,46 +4,66 @@ import java.util.NoSuchElementException;
 /**
  * Implementación de TDAList
  * @author Ortega Venegas Rodrigo Aldair 318036104
+ * @author San Martin Macias Juan Daniel 318181637
  * @version 1.0 13-9-2022
  * @since Estructuras de datos 2023-1. Práctica 2.
  */
 
 public class DoubleLinkedList<T> implements TDAList<T>{
 
+    /**
+     * Clase interna Nodo
+     */
     private class Nodo{
-        //Elemento del nodo
-        public T elemento;
-        //Nodo siguiente
-        public Nodo siguiente;
-        //Nodo anterior
-        public Nodo anterior;
+        
+        private T elemento;
+        private Nodo siguiente;
+        private Nodo anterior;
 
-        //Constructor de clase Nodo
+        /**
+         * Constructor de la clase Nodo
+         * @param elemento el elemento que contendrá el nuevo Nodo.
+         */
         public Nodo(T elemento){
             this.elemento = elemento;
         }
 
-        //Accede al elemento del nodo
+        /**
+         * Regresa el elemento almacenado en el Nodo
+         * @return el elemento almacenado en el Nodo
+         */
         public T getElemento(){
-            return elemento;
+            return this.elemento;
         }
 
-        //Accede al anterior del nodo
+        /**
+         * Regresa el Nodo anterior.
+         * @return el Nodo anterior
+         */
         public Nodo getAnterior(){
-            return anterior;
+            return this.anterior;
         }
 
-        //Accede al siguiente del nodo
+        /**
+         * Regresa el Nodo siguiente.
+         * @return el Nodo siguiente
+         */
         public Nodo getSiguiente(){
-            return siguiente;
+            return this.siguiente;
         }
 
-        //Permite cambiar el anterior del nodo
+        /**
+         * Asigna el Nodo anterior
+         * @param nuevoAnterior el nuevo nodo a asignar
+         */
         public void setAnterior(Nodo nuevoAnterior){
             anterior = nuevoAnterior;
         }
 
-        //Permite cambiar el siguiente del nodo
+        /**
+         * Permite cambiar el siguiente del nodo
+         * @param nuevoSiguiente el nuevo nodo a asignar
+         */
         public void setSiguiente(Nodo nuevoSiguiente){
             siguiente = nuevoSiguiente;
         }
@@ -54,6 +74,12 @@ public class DoubleLinkedList<T> implements TDAList<T>{
     private Nodo cola;
     private int tamano;
 
+    /**
+     * Método que agrega un elemento a la lista en una posicion designada.
+     * @param i posicion en la que se agregará el nuevo elemento
+     * @param e elemento que se agregará a la lista 
+     * @throws IndexOutOfBoundsException  si 'i' no está en el rango de la lista
+     */
     @Override
     public void add(int i, T e) throws IndexOutOfBoundsException {
 
@@ -118,6 +144,9 @@ public class DoubleLinkedList<T> implements TDAList<T>{
         }
     }
 
+    /**
+     * Método que se encarga de limpiar la lista
+     */
     @Override
     public void clear() {
         cabeza = null;
@@ -125,6 +154,11 @@ public class DoubleLinkedList<T> implements TDAList<T>{
         tamano = 0;
     }
 
+    /**
+     * Método encargado de buscar en la lista un elemento dado.
+     * @param e el elemento a buscar.
+     * @return True si el elemento sí se encuentra en la lista, false en cualquier otro caso.
+     */
     @Override
     public boolean contains(T e) {
         // Si la lista está vacía
@@ -179,6 +213,12 @@ public class DoubleLinkedList<T> implements TDAList<T>{
         return false;
     }
 
+    /**
+     * Regresa el elemento en la posicion que se indica
+     * @param i la posicion del elemento que se busca.
+     * @return el elemento en la posicion i
+     * @throws IndexOutOfBoundsException si el elemento está fuera del rango de la lista
+     */
     @Override
     public T get(int i) throws IndexOutOfBoundsException {
 
@@ -221,11 +261,21 @@ public class DoubleLinkedList<T> implements TDAList<T>{
         return null;
     }
 
+    /**
+     * Método que se encarga de revisar si la lista está vacía o no
+     * @return True si la lista tiene al menos un elemento, False en cualquier otro caso
+     */
     @Override
     public boolean isEmpty() {
         return cabeza == null;
     }
 
+    /**
+     * Método encargado de eliminar el Nodo en la posción dada
+     * @param i la posicion donde se encuentra el nodo a eliminar
+     * @return el elemento eliminado
+     * @throws IndexOutOfBoundsException en caso en el que 'i' no está en el rango de la lista
+     */
     @Override
     public T remove(int i) throws IndexOutOfBoundsException {
         // Caso en el que 'i' no está en el rango de la lista
@@ -287,12 +337,18 @@ public class DoubleLinkedList<T> implements TDAList<T>{
         return remove;
     }
 
+    /**
+     * Método encargado de regresar el tamaño de la lista
+     * @return el tamaño de la lista
+     */
     @Override
     public int size() {
-        return tamano;
+        return this.tamano;
     }
 
-    //@Override
+    /**
+     * Método encargado de invertir la lista 
+     */
     public void revert() {
         // Si la lista está vacía
         if (tamano == 0){
@@ -320,53 +376,67 @@ public class DoubleLinkedList<T> implements TDAList<T>{
         cola = temp;
     }
 
-   //@Override
-    public TDAList<T> cut(boolean side) {
-        DoubleLinkedList<T> lista = new DoubleLinkedList<>();
-        // Mitad derecha
-        Nodo pointer;
-        int indice = 0;
-        if(side == true){
-            pointer = cola;
-            for(int i = tamano; i > tamano/2; i--){
-                lista.add(indice, pointer.getElemento());
-                pointer = pointer.getAnterior();
-                indice++;
-            }
+    /**
+     * Método que se encarga de unir dos listas
+     * @param listaB lista que se unirá con la actual
+     */
+    public void unirListas(DoubleLinkedList<T> listaB){
+        Nodo actualA = this.cabeza;
+        Nodo actualB = listaB.cabeza;
+        Nodo auxA = null;
+        Nodo auxB = null;
+        while(actualA != null && actualB != null){
+            auxA = actualA.getSiguiente();
+            auxB = actualB.getSiguiente();
+            actualA.setSiguiente(actualB);
+            actualB.setAnterior(actualA);
+            actualA = auxA;
+            actualB = auxB;
 
         }
-        //Mitad izquierda
-        else {
-            pointer = cabeza;
-            for(int i = 0; i < tamano/2; i++){
-                lista.add(indice, pointer.getElemento());
-                pointer = pointer.getSiguiente();
-                indice++;
-            }
-        }
-        return lista;
     }
 
-    @Override
-    public String toString(){
-        String formato = "";
-        Nodo iterador = cabeza;
-        
-        while(iterador != null){
-            formato += iterador.getElemento() + "\n";
-            iterador = iterador.getSiguiente();
+    /**
+     * Método que se encarga de buscar en la primera mitad de la lista
+     * @param B el elemento a buscar
+     * @return 1 si el elemento se encuentra en la lista, -1 en caso de que no.
+     */
+    public int encuentraValorMitad(int B){
+        if(B < 0 || B > tamano){
+            throw new IndexOutOfBoundsException("'i' debe estar dentro del rango de la lista");
         }
-        return formato;
+        else{
+            int longitud = this.size();
+            int mitad = (longitud/2) + 1;
+            Nodo aux = new Nodo(get(B));
+            for (int i = 0; i < mitad; i++){
+                if(this.get(i) == aux){
+                    return 1;
+                }
+            }
+            return -1;
+        }
     }
 
+    /**
+     * Clase interna encargada del iterator en una lista doblemente ligada
+     */
     public class DoubleListIterator implements Iterator<T>{
 
         private Nodo actual = cabeza;
 
+        /**
+         * Método que verifica si el Nodo que lo manda a llamar tiene un siguiente
+         * @return True si tiene un Nodo siguiente, False en cualquier otro caso
+         */
         public boolean hasNext() {
             return actual != null;
         }
 
+        /**
+         * Método que accede al Nodo siguiente
+         * @return el siguiente Nodo
+         */
         public T next() {
             if(!hasNext()){
                 throw new NoSuchElementException();
@@ -377,7 +447,10 @@ public class DoubleLinkedList<T> implements TDAList<T>{
         }
     }
 
-    //@Override
+    /**
+     * Método que regresa el iterador de la lista
+     * @return el iterador de la lista.
+     */
     public Iterator<T> listIterador() {
         return new DoubleListIterator();
     }

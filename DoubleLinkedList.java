@@ -2,7 +2,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Implementación de TDAList
+ * Implementación de la interfaz TDAList
  * @author Ortega Venegas Rodrigo Aldair 318036104
  * @author San Martin Macias Juan Daniel 318181637
  * @version 1.0 13-9-2022

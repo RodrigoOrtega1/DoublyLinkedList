@@ -95,6 +95,24 @@ public class Main{
                     lista.revert();
                     System.out.println(lista);
                     break;
+
+                case 9:
+                    try{
+                        System.out.println("Cortar a la izquierda: false, cortar a la derecha: true");
+                        boolean side = inputScanner.nextBoolean();
+                    
+                    }
+                    catch (InputMismatchException error){
+                        throw new InputMismatchException("Por favor inserta un tipo de dato válido");
+                    }
+                    break;
+                case 10:
+                    System.out.println(lista);
+                    break;
+                case 11:
+                    inputScanner.close();
+                    return;
+
                 default:
                     System.out.println("Numero inválido");
             }

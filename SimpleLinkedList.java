@@ -243,11 +243,28 @@ public class SimpleLinkedList<T> implements TDAList<T>{
         }
         int mitad = (longitud / 2) + 1;
         if (b <= mitad){
-            get(b);
-            return 1;
+            System.out.println("Elemento en indice " + b + ": " + get(b));
         } else {
             return -1;
         }
+        return -1;
+    }
+
+    /**
+     * Actividad 6
+     * Invierte los valores de la lista
+     */
+    public void revert(){
+        Nodo prev = null;
+        Nodo current = cabeza;
+        Nodo next = null;
+        while (current != null) {
+            next = current.siguiente;
+            current.siguiente = prev;
+            prev = current;
+            current = next;
+        }
+        cabeza = prev;
     }
 
     public String toString(){

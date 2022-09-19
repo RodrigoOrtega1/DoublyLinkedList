@@ -401,8 +401,8 @@ public class DoubleLinkedList<T> implements TDAList<T>{
      * @param B el elemento a buscar
      * @return 1 si el elemento se encuentra en la lista, -1 en caso de que no.
      */
-    public int encuentraValorMitad(int B){
-        if(B < 0 || B > tamano){
+    public int encuentraValorMitad(int b){
+        /* if(B < 0 || B > tamano){
             throw new IndexOutOfBoundsException("'i' debe estar dentro del rango de la lista");
         }
         else{
@@ -415,7 +415,17 @@ public class DoubleLinkedList<T> implements TDAList<T>{
                 }
             }
             return -1;
+        } */
+        if(b < 0 || b > tamano || !contains(get(b))){
+            return -1;
         }
+        int mitad = (tamano / 2) + 1;
+        if (b <= mitad){
+            System.out.println("Elemento en indice " + b + ": " + get(b));
+        } else {
+            return -1;
+        }
+        return -1;
     }
 
     /**
